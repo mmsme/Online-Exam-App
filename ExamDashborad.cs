@@ -89,8 +89,6 @@ namespace Online_Exam_App
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OnlineExam exam = new OnlineExam();
-
             string cname = listBox1.SelectedItem.ToString();
             loadAvialbleExams(cname);
         }

@@ -50,7 +50,7 @@ namespace Online_Exam_App
                                where s.Sid == id && s.Fname == name
                                select s).First();
                 this.Close();
-                StudentDashbord dashbord = new StudentDashbord(id);
+                StudentDashbord dashbord = new StudentDashbord(student.Sid);
                 dashbord.Show();
             }
             catch (Exception)
