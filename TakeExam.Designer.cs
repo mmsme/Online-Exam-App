@@ -35,17 +35,19 @@ namespace Online_Exam_App
             this.examNameValue = new System.Windows.Forms.Label();
             this.examName = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.finishBtnArea = new System.Windows.Forms.FlowLayoutPanel();
             this.prev = new System.Windows.Forms.Button();
             this.next = new System.Windows.Forms.Button();
             this.question = new System.Windows.Forms.Label();
             this.flowLayoutPanel2 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.finish = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.timerValue);
             this.panel1.Controls.Add(this.Timer);
             this.panel1.Controls.Add(this.examNameValue);
@@ -104,7 +106,7 @@ namespace Online_Exam_App
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.finishBtnArea);
+            this.panel2.Controls.Add(this.finish);
             this.panel2.Controls.Add(this.prev);
             this.panel2.Controls.Add(this.next);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -112,14 +114,6 @@ namespace Online_Exam_App
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1177, 113);
             this.panel2.TabIndex = 13;
-            // 
-            // finishBtnArea
-            // 
-            this.finishBtnArea.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.finishBtnArea.Location = new System.Drawing.Point(437, 10);
-            this.finishBtnArea.Name = "finishBtnArea";
-            this.finishBtnArea.Size = new System.Drawing.Size(283, 100);
-            this.finishBtnArea.TabIndex = 1;
             // 
             // prev
             // 
@@ -170,10 +164,39 @@ namespace Online_Exam_App
             // 
             // flowLayoutPanel2
             // 
+            this.flowLayoutPanel2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.flowLayoutPanel2.Location = new System.Drawing.Point(92, 212);
             this.flowLayoutPanel2.Name = "flowLayoutPanel2";
             this.flowLayoutPanel2.Size = new System.Drawing.Size(1010, 431);
             this.flowLayoutPanel2.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(503, 34);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 32);
+            this.label1.TabIndex = 8;
+            this.label1.Text = "label1";
+            // 
+            // finish
+            // 
+            this.finish.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.finish.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(168)))), ((int)(((byte)(38)))));
+            this.finish.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.finish.FlatAppearance.BorderSize = 0;
+            this.finish.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.finish.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.finish.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(22)))), ((int)(((byte)(30)))));
+            this.finish.Location = new System.Drawing.Point(486, 31);
+            this.finish.Name = "finish";
+            this.finish.Size = new System.Drawing.Size(196, 48);
+            this.finish.TabIndex = 8;
+            this.finish.Text = "Finish";
+            this.finish.UseVisualStyleBackColor = false;
+            this.finish.Click += new System.EventHandler(this.finish_Click);
             // 
             // TakeExam
             // 
@@ -205,10 +228,11 @@ namespace Online_Exam_App
         private System.Windows.Forms.Label examNameValue;
         private System.Windows.Forms.Label examName;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.FlowLayoutPanel finishBtnArea;
         private System.Windows.Forms.Button prev;
         private System.Windows.Forms.Button next;
         private System.Windows.Forms.Label question;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button finish;
     }
 }

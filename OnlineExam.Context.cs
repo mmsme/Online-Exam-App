@@ -38,6 +38,19 @@ namespace Online_Exam_App
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
     
+        public virtual ObjectResult<Calc_Student_Exam_Grade_Result> Calc_Student_Exam_Grade(Nullable<int> st_id, Nullable<int> ex_id)
+        {
+            var st_idParameter = st_id.HasValue ?
+                new ObjectParameter("st_id", st_id) :
+                new ObjectParameter("st_id", typeof(int));
+    
+            var ex_idParameter = ex_id.HasValue ?
+                new ObjectParameter("ex_id", ex_id) :
+                new ObjectParameter("ex_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Calc_Student_Exam_Grade_Result>("Calc_Student_Exam_Grade", st_idParameter, ex_idParameter);
+        }
+    
         public virtual ObjectResult<string> Delete_Choice(Nullable<int> q_ID, string choice)
         {
             var q_IDParameter = q_ID.HasValue ?

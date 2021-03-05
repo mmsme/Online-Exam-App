@@ -25,10 +25,20 @@ namespace Online_Exam_App
                 return;
             }
 
-            int studentId = int.Parse(textBox1.Text);
-            string studentName = textBox2.Text;
+            try
+            {
+                int studentId = int.Parse(textBox1.Text);
 
-            login(studentId, studentName);
+                string studentName = textBox2.Text;
+
+                login(studentId, studentName);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Invalid ID","Error");
+            }     
         }
 
         private bool checkInputDataValid() 

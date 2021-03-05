@@ -297,6 +297,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Calc_Full_Mark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="ex_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Calc_Grade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="char">
+          <Parameter Name="marks" Type="int" Mode="In" />
+          <Parameter Name="full_mark" Type="float" Mode="In" />
+        </Function>
+        <Function Name="Calc_Student_Exam_Grade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="st_id" Type="int" Mode="In" />
+          <Parameter Name="ex_id" Type="int" Mode="In" />
+        </Function>
         <Function Name="Delete_Choice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Q_ID" Type="int" Mode="In" />
           <Parameter Name="choice" Type="char" Mode="In" />
@@ -321,6 +332,9 @@
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fullMark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="ex_Id" Type="int" Mode="In" />
+        </Function>
         <Function Name="generateExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
@@ -888,6 +902,10 @@
             <End Role="Course" EntitySet="Courses" />
             <End Role="Student" EntitySet="Students" />
           </AssociationSet>
+          <FunctionImport Name="Calc_Student_Exam_Grade" ReturnType="Collection(Model.Calc_Student_Exam_Grade_Result)">
+            <Parameter Name="st_id" Mode="In" Type="Int32" />
+            <Parameter Name="ex_id" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="Delete_Choice" ReturnType="Collection(String)">
             <Parameter Name="Q_ID" Mode="In" Type="Int32" />
             <Parameter Name="choice" Mode="In" Type="String" />
@@ -1075,6 +1093,11 @@
             <Parameter Name="deptid" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="Calc_Student_Exam_Grade_Result">
+          <Property Type="String" Name="grade" Nullable="true" MaxLength="1" />
+          <Property Type="Int32" Name="student_answer_degrees" Nullable="true" />
+          <Property Type="Int32" Name="full_exam_degree" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="generateExam_Result">
           <Property Type="Int32" Name="QuesId" Nullable="false" />
           <Property Type="String" Name="Type" Nullable="true" MaxLength="3" />
@@ -1259,6 +1282,15 @@
               <ScalarProperty Name="Sid" ColumnName="Sid" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="Calc_Student_Exam_Grade" FunctionName="Model.Store.Calc_Student_Exam_Grade">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.Calc_Student_Exam_Grade_Result">
+                <ScalarProperty Name="grade" ColumnName="grade" />
+                <ScalarProperty Name="student_answer_degrees" ColumnName="student answer degrees" />
+                <ScalarProperty Name="full_exam_degree" ColumnName="full exam degree" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Delete_Choice" FunctionName="Model.Store.Delete_Choice" />
           <FunctionImportMapping FunctionImportName="Delete_Course_byName" FunctionName="Model.Store.Delete_Course_byName" />
           <FunctionImportMapping FunctionImportName="Delete_Crs_Topic" FunctionName="Model.Store.Delete_Crs_Topic" />

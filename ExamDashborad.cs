@@ -89,16 +89,15 @@ namespace Online_Exam_App
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            try
+            if (listBox1.SelectedItem == null)
             {
-                string cname = listBox1.SelectedItem.ToString();
-                loadAvialbleExams(cname);
+                MessageBox.Show("Please Select Course To Show Avaliable Exams", "Waring");
+                return;
             }
-            catch (Exception)
-            {
-                MessageBox.Show("Please Select Course To Show Avaliable Exams","Warring");
-            }
-            
+
+            string cname = listBox1.SelectedItem.ToString();
+            loadAvialbleExams(cname);
+
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -55,6 +55,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Calc_Student_Exam_Grade_Result.cs">
+      <DependentUpon>OnlineExam.tt</DependentUpon>
+    </Compile>
     <Compile Include="Course.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
@@ -335,19 +338,19 @@
     <None Include="Resources\undraw_All_the_data_re_hh4w.png" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="OnlineExam.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>OnlineExam.Context.cs</LastGenOutput>
       <DependentUpon>OnlineExam.edmx</DependentUpon>
+      <LastGenOutput>OnlineExam.Context.cs</LastGenOutput>
     </Content>
     <Content Include="OnlineExam.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>OnlineExam.edmx</DependentUpon>
       <LastGenOutput>OnlineExam.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

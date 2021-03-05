@@ -30,6 +30,7 @@ namespace Online_Exam_App
         {
             loadExam();
             loadQuestion(currentIndex);
+            showFinishButton();
         }
 
         private void next_Click(object sender, EventArgs e)
@@ -68,6 +69,7 @@ namespace Online_Exam_App
             ButtonsStates();
             generateExam_Result q = examBody[index];
             question.Text = $"{index + 1}) {q.Qcontent}";
+            label1.Text = $"{index+1} / {examBody.Count} of Questions";
             // check Type 
             if (q.Type.ToLower() == "tf")
             {
@@ -105,13 +107,17 @@ namespace Online_Exam_App
             RadioButton radio = new RadioButton();
             string answer = "T) True";
             radio.Text = answer;
-            radio.Size = new Size(200, 20);
+            radio.Size = new Size(200, 40);
+            radio.Font = new Font("Microsoft Sans Serif", 16);
+            radio.CheckedChanged += new System.EventHandler(getAnswer);
             flowLayoutPanel2.Controls.Add(radio);
 
             RadioButton radio2 = new RadioButton();
             string answer2 = "F) False";
             radio2.Text = answer2;
-            radio2.Size = new Size(200, 20);
+            radio2.Size = new Size(200, 40);
+            radio2.Font = new Font("Microsoft Sans Serif", 16);
+            radio2.CheckedChanged += new System.EventHandler(getAnswer);
             flowLayoutPanel2.Controls.Add(radio2);
         }
 
@@ -129,9 +135,59 @@ namespace Online_Exam_App
                 RadioButton radio = new RadioButton();
                 string answer = item.choices + ") " + item.body;
                 radio.Text = answer;
-                radio.Size = new Size(200, 20);
+                radio.Size = new Size(200, 40);
+                radio.Font = new Font("Microsoft Sans Serif", 16);
+                radio.CheckedChanged += new System.EventHandler(getAnswer);
                 flowLayoutPanel2.Controls.Add(radio);
             }
+        }
+
+        private void getAnswer(object sender, EventArgs e)
+        {
+            // 1 - get Values Of Answer
+            string answ = (sender as RadioButton).Text.Split(')')[0];
+            // 2 - Get Question ID
+            int QuestID = examBody[currentIndex].QuesId;
+            if (existInAnswerSheet(QuestID))
+            {
+                StudentAnswersSheet[QuestID] = answ;
+                return;
+            }
+
+            StudentAnswersSheet.Add(QuestID, answ);
+            showFinishButton();
+        }
+
+        private bool existInAnswerSheet(int id)
+        {
+            foreach (var item in StudentAnswersSheet)
+            {
+                if (item.Key == id)
+                    return true;
+            }
+
+            return false;
+        }
+
+        private void showFinishButton()
+        {
+            if (StudentAnswersSheet.Count == examBody.Count)
+            {
+                
+                finish.Enabled = true;
+                finish.Show();
+               
+            }
+            else
+            {
+                finish.Enabled = false;
+                finish.Hide();
+            }
+        }
+
+        private void finish_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }
