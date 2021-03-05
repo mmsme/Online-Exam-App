@@ -67,8 +67,7 @@ namespace Online_Exam_App
             currentIndex = index;
             ButtonsStates();
             generateExam_Result q = examBody[index];
-            quesBody.ForeColor = Color.FromArgb(239, 155, 20);
-            quesBody.Text = $"{index + 1}) {q.Qcontent}";
+            question.Text = $"{index + 1}) {q.Qcontent}";
             // check Type 
             if (q.Type.ToLower() == "tf")
             {
