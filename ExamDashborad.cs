@@ -95,7 +95,9 @@ namespace Online_Exam_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-           
+            this.Close();
+            TakeExam takeExam = new TakeExam(ExamID, studentID);
+            takeExam.Show();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)

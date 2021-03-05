@@ -239,6 +239,12 @@
     <Compile Include="sysdiagram.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
+    <Compile Include="TakeExam.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TakeExam.Designer.cs">
+      <DependentUpon>TakeExam.cs</DependentUpon>
+    </Compile>
     <Compile Include="Topic.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
@@ -297,6 +303,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Student Login Form.resx">
       <DependentUpon>Student Login Form.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TakeExam.resx">
+      <DependentUpon>TakeExam.cs</DependentUpon>
     </EmbeddedResource>
     <EntityDeploy Include="OnlineExam.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
