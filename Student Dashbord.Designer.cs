@@ -33,6 +33,11 @@ namespace Online_Exam_App
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StudentDashbord));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.panel14 = new System.Windows.Forms.Panel();
+            this.panel15 = new System.Windows.Forms.Panel();
+            this.dept = new System.Windows.Forms.Label();
+            this.panel16 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.addressValue = new System.Windows.Forms.Label();
@@ -52,9 +57,13 @@ namespace Online_Exam_App
             this.ImgProfile = new System.Windows.Forms.PictureBox();
             this.panel12 = new System.Windows.Forms.Panel();
             this.panel13 = new System.Windows.Forms.Panel();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
+            this.panel14.SuspendLayout();
+            this.panel15.SuspendLayout();
+            this.panel16.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel10.SuspendLayout();
             this.panel11.SuspendLayout();
@@ -74,14 +83,79 @@ namespace Online_Exam_App
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(63)))), ((int)(((byte)(61)))), ((int)(((byte)(86)))));
+            this.panel1.Controls.Add(this.panel14);
             this.panel1.Controls.Add(this.panel9);
             this.panel1.Controls.Add(this.panel6);
             this.panel1.Controls.Add(this.panel2);
             this.panel1.Controls.Add(this.panel3);
             this.panel1.Location = new System.Drawing.Point(2, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(332, 693);
+            this.panel1.Size = new System.Drawing.Size(332, 787);
             this.panel1.TabIndex = 0;
+            // 
+            // panel14
+            // 
+            this.panel14.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel14.Controls.Add(this.panel15);
+            this.panel14.Controls.Add(this.panel16);
+            this.panel14.Location = new System.Drawing.Point(0, 568);
+            this.panel14.Name = "panel14";
+            this.panel14.Size = new System.Drawing.Size(332, 110);
+            this.panel14.TabIndex = 7;
+            // 
+            // panel15
+            // 
+            this.panel15.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel15.BackColor = System.Drawing.Color.Transparent;
+            this.panel15.Controls.Add(this.dept);
+            this.panel15.Location = new System.Drawing.Point(-3, 48);
+            this.panel15.Name = "panel15";
+            this.panel15.Size = new System.Drawing.Size(335, 61);
+            this.panel15.TabIndex = 4;
+            // 
+            // dept
+            // 
+            this.dept.AutoSize = true;
+            this.dept.Dock = System.Windows.Forms.DockStyle.Left;
+            this.dept.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dept.ForeColor = System.Drawing.Color.White;
+            this.dept.Location = new System.Drawing.Point(0, 0);
+            this.dept.Name = "dept";
+            this.dept.Padding = new System.Windows.Forms.Padding(35, 10, 10, 10);
+            this.dept.Size = new System.Drawing.Size(164, 49);
+            this.dept.TabIndex = 0;
+            this.dept.Text = "Mansoura";
+            // 
+            // panel16
+            // 
+            this.panel16.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(155)))), ((int)(((byte)(20)))));
+            this.panel16.Controls.Add(this.label2);
+            this.panel16.ForeColor = System.Drawing.Color.Black;
+            this.panel16.Location = new System.Drawing.Point(-3, 2);
+            this.panel16.Name = "panel16";
+            this.panel16.Size = new System.Drawing.Size(335, 47);
+            this.panel16.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
+            this.label2.Name = "label2";
+            this.label2.Padding = new System.Windows.Forms.Padding(15, 6, 6, 6);
+            this.label2.Size = new System.Drawing.Size(93, 43);
+            this.label2.TabIndex = 0;
+            this.label2.Text = "Dept";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label2.UseMnemonic = false;
             // 
             // panel9
             // 
@@ -89,7 +163,7 @@ namespace Online_Exam_App
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel9.Controls.Add(this.panel10);
             this.panel9.Controls.Add(this.panel11);
-            this.panel9.Location = new System.Drawing.Point(0, 496);
+            this.panel9.Location = new System.Drawing.Point(0, 453);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(332, 110);
             this.panel9.TabIndex = 6;
@@ -153,9 +227,9 @@ namespace Online_Exam_App
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel6.Controls.Add(this.panel7);
             this.panel6.Controls.Add(this.panel8);
-            this.panel6.Location = new System.Drawing.Point(3, 363);
+            this.panel6.Location = new System.Drawing.Point(0, 338);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(329, 110);
+            this.panel6.Size = new System.Drawing.Size(329, 96);
             this.panel6.TabIndex = 5;
             // 
             // panel7
@@ -190,7 +264,7 @@ namespace Online_Exam_App
             this.panel8.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(332, 110);
+            this.panel8.Size = new System.Drawing.Size(332, 96);
             this.panel8.TabIndex = 3;
             // 
             // StdName
@@ -304,19 +378,39 @@ namespace Online_Exam_App
             this.panel12.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel12.Location = new System.Drawing.Point(340, 0);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(780, 545);
+            this.panel12.Size = new System.Drawing.Size(859, 554);
             this.panel12.TabIndex = 1;
             this.panel12.Paint += new System.Windows.Forms.PaintEventHandler(this.panel12_Paint);
             // 
             // panel13
             // 
             this.panel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel13.Controls.Add(this.button3);
             this.panel13.Controls.Add(this.button2);
             this.panel13.Controls.Add(this.button1);
-            this.panel13.Location = new System.Drawing.Point(340, 544);
+            this.panel13.Location = new System.Drawing.Point(419, 560);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(780, 152);
+            this.panel13.Size = new System.Drawing.Size(780, 230);
             this.panel13.TabIndex = 2;
+            // 
+            // button3
+            // 
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(239)))), ((int)(((byte)(155)))), ((int)(((byte)(20)))));
+            this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button3.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.button3.FlatAppearance.BorderSize = 0;
+            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.ForeColor = System.Drawing.Color.Black;
+            this.button3.Location = new System.Drawing.Point(510, 21);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(228, 54);
+            this.button3.TabIndex = 4;
+            this.button3.Text = "Show Degree";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button2
             // 
@@ -329,7 +423,7 @@ namespace Online_Exam_App
             this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button2.ForeColor = System.Drawing.Color.Black;
-            this.button2.Location = new System.Drawing.Point(510, 77);
+            this.button2.Location = new System.Drawing.Point(510, 155);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(228, 54);
             this.button2.TabIndex = 3;
@@ -348,7 +442,7 @@ namespace Online_Exam_App
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.Black;
-            this.button1.Location = new System.Drawing.Point(510, 7);
+            this.button1.Location = new System.Drawing.Point(510, 86);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(228, 54);
             this.button1.TabIndex = 2;
@@ -361,7 +455,7 @@ namespace Online_Exam_App
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1120, 693);
+            this.ClientSize = new System.Drawing.Size(1199, 787);
             this.Controls.Add(this.panel13);
             this.Controls.Add(this.panel12);
             this.Controls.Add(this.panel1);
@@ -369,6 +463,11 @@ namespace Online_Exam_App
             this.Text = "Student Dashbord Form";
             this.Load += new System.EventHandler(this.StudentDashbord_Load);
             this.panel1.ResumeLayout(false);
+            this.panel14.ResumeLayout(false);
+            this.panel15.ResumeLayout(false);
+            this.panel15.PerformLayout();
+            this.panel16.ResumeLayout(false);
+            this.panel16.PerformLayout();
             this.panel9.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.panel10.PerformLayout();
@@ -415,5 +514,11 @@ namespace Online_Exam_App
         private System.Windows.Forms.Panel panel13;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Panel panel14;
+        private System.Windows.Forms.Panel panel15;
+        private System.Windows.Forms.Label dept;
+        private System.Windows.Forms.Panel panel16;
+        private System.Windows.Forms.Label label2;
     }
 }

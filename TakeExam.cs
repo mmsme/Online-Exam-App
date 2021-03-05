@@ -31,6 +31,7 @@ namespace Online_Exam_App
             loadExam();
             loadQuestion(currentIndex);
             showFinishButton();
+            
         }
 
         private void next_Click(object sender, EventArgs e)
@@ -49,6 +50,7 @@ namespace Online_Exam_App
         private void loadExam()
         {
             OnlineExam ent = new OnlineExam();
+            
             /// Generate Exam  Quesstions
             var examQuestions = ent.generateExam(examID);
             examBody = examQuestions.ToList();
@@ -133,7 +135,7 @@ namespace Online_Exam_App
             foreach (var item in ques_Choices)
             {
                 RadioButton radio = new RadioButton();
-                string answer = item.choices + ") " + item.body;
+                string answer = $"{item.choices}) {item.body}";
                 radio.Text = answer;
                 radio.Size = new Size(200, 40);
                 radio.Font = new Font("Microsoft Sans Serif", 16);
@@ -187,7 +189,36 @@ namespace Online_Exam_App
 
         private void finish_Click(object sender, EventArgs e)
         {
-            
+
+            OnlineExam exam = new OnlineExam();
+            checkIfNotFirstExam();
+
+            foreach (var item in StudentAnswersSheet)
+            {
+                exam.Insert_Std_Answer(studentID, examID, item.Key, item.Value);
+            }
+
+            var res = exam.Calc_Student_Exam_Grade(studentID,examID).First();
+            exam.saveStudentGrade(studentID,examID,res.grade);
+            MessageBox.Show($"Your Grade {res.grade}, and Degree {res.student_answer_degrees}","Your Resault");
+            StudentDashbord dashbord = new StudentDashbord(studentID);
+            this.Close();
+            dashbord.Show();
+        }
+
+        private void checkIfNotFirstExam()
+        {
+            try
+            {
+                OnlineExam exam = new OnlineExam();
+                var msg = exam.deleteStudentExam(studentID, examID);
+                exam.SaveChanges();
+            }
+            catch (Exception)
+            {
+
+                return;
+            }
         }
     }
 }

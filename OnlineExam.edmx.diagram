@@ -4,17 +4,18 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a884a80cdcdd41d1ac87f3306cdd8bf9" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="8.25" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Exam" Width="1.5" PointX="3" PointY="3.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Instructor" Width="1.5" PointX="6" PointY="3.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Ques_Choices" Width="1.5" PointX="5.25" PointY="10.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Std_exam" Width="1.5" PointX="5.25" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="10.5" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="Model.Topic" Width="1.5" PointX="3" PointY="13.375" IsExpanded="true" />
+      <Diagram DiagramId="377a16739eaa475bb877a3a0e2113c96" Name="Diagram1">
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="10.25" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Exam" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Instructor" Width="1.5" PointX="8" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Ques_Choices" Width="1.5" PointX="5.25" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="3" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Std_exam" Width="1.5" PointX="5.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Std_Grades" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Student" Width="1.5" PointX="12.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.sysdiagram" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Model.Topic" Width="1.5" PointX="3" PointY="14.75" IsExpanded="true" />
         <AssociationConnector Association="Model.FK_Exam_Course" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Question_Course" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Question_Course1" ManuallyRouted="false" />
@@ -23,9 +24,11 @@
         <AssociationConnector Association="Model.FK_Instructor_Department1" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Student_Department" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Std_exam_Exam" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Std_Grades_Exam" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Ques_Choices_Question" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Std_exam_Question" ManuallyRouted="false" />
         <AssociationConnector Association="Model.FK_Std_exam_Student" ManuallyRouted="false" />
+        <AssociationConnector Association="Model.FK_Std_Grades_Student" ManuallyRouted="false" />
         <AssociationConnector Association="Model.Crs_Ins" ManuallyRouted="false" />
         <AssociationConnector Association="Model.Std_course" ManuallyRouted="false" />
       </Diagram>

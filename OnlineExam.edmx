@@ -87,6 +87,15 @@
           <Property Name="QuesId" Type="int" Nullable="false" />
           <Property Name="Std_answer" Type="varchar" MaxLength="500" />
         </EntityType>
+        <EntityType Name="Std_Grades">
+          <Key>
+            <PropertyRef Name="Sid" />
+            <PropertyRef Name="Enumber" />
+          </Key>
+          <Property Name="Sid" Type="int" Nullable="false" />
+          <Property Name="Enumber" Type="int" Nullable="false" />
+          <Property Name="grade" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Sid" />
@@ -273,6 +282,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Std_Grades_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
+          <End Role="Std_Grades" Type="Self.Std_Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Enumber" />
+            </Principal>
+            <Dependent Role="Std_Grades">
+              <PropertyRef Name="Enumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Std_Grades_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Std_Grades" Type="Self.Std_Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Std_Grades">
+              <PropertyRef Name="Sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Student_Department">
           <End Role="Department" Type="Self.Department" Multiplicity="0..1" />
           <End Role="Student" Type="Self.Student" Multiplicity="*" />
@@ -331,6 +364,10 @@
         <Function Name="Delete_Student" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
         </Function>
+        <Function Name="deleteStudentExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sid" Type="int" Mode="In" />
+          <Parameter Name="exid" Type="int" Mode="In" />
+        </Function>
         <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="fullMark" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="ex_Id" Type="int" Mode="In" />
@@ -340,6 +377,9 @@
         </Function>
         <Function Name="getCoursesByDeptID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="deptID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getStudnetGrades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sid" Type="int" Mode="In" />
         </Function>
         <Function Name="Insert_Choice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="q_id" Type="int" Mode="In" />
@@ -392,6 +432,11 @@
           <Parameter Name="dob" Type="date" Mode="In" />
           <Parameter Name="address" Type="varchar" Mode="In" />
           <Parameter Name="deptid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="saveStudentGrade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="sid" Type="int" Mode="In" />
+          <Parameter Name="eid" Type="int" Mode="In" />
+          <Parameter Name="grad" Type="varchar" Mode="In" />
         </Function>
         <Function Name="Select_Course_byName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="name" Type="varchar" Mode="In" />
@@ -508,6 +553,7 @@
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Std_course" EntityType="Self.Std_course" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Std_exam" EntityType="Self.Std_exam" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Std_Grades" EntityType="Self.Std_Grades" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Student" EntityType="Self.Student" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
@@ -563,6 +609,14 @@
             <End Role="Student" EntitySet="Student" />
             <End Role="Std_exam" EntitySet="Std_exam" />
           </AssociationSet>
+          <AssociationSet Name="FK_Std_Grades_Exam" Association="Self.FK_Std_Grades_Exam">
+            <End Role="Exam" EntitySet="Exam" />
+            <End Role="Std_Grades" EntitySet="Std_Grades" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Std_Grades_Student" Association="Self.FK_Std_Grades_Student">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="Std_Grades" EntitySet="Std_Grades" />
+          </AssociationSet>
           <AssociationSet Name="FK_Student_Department" Association="Self.FK_Student_Department">
             <End Role="Department" EntitySet="Department" />
             <End Role="Student" EntitySet="Student" />
@@ -614,6 +668,7 @@
           <Property Name="CrsId" Type="Int32" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Exam_Course" FromRole="Exam" ToRole="Course" />
           <NavigationProperty Name="Std_exam" Relationship="Self.FK_Std_exam_Exam" FromRole="Exam" ToRole="Std_exam" />
+          <NavigationProperty Name="Std_Grades" Relationship="Self.FK_Std_Grades_Exam" FromRole="Exam" ToRole="Std_Grades" />
         </EntityType>
         <EntityType Name="Instructor">
           <Key>
@@ -665,6 +720,17 @@
           <NavigationProperty Name="Question" Relationship="Self.FK_Std_exam_Question" FromRole="Std_exam" ToRole="Question" />
           <NavigationProperty Name="Student" Relationship="Self.FK_Std_exam_Student" FromRole="Std_exam" ToRole="Student" />
         </EntityType>
+        <EntityType Name="Std_Grades">
+          <Key>
+            <PropertyRef Name="Sid" />
+            <PropertyRef Name="Enumber" />
+          </Key>
+          <Property Name="Sid" Type="Int32" Nullable="false" />
+          <Property Name="Enumber" Type="Int32" Nullable="false" />
+          <Property Name="grade" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Exam" Relationship="Self.FK_Std_Grades_Exam" FromRole="Std_Grades" ToRole="Exam" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_Std_Grades_Student" FromRole="Std_Grades" ToRole="Student" />
+        </EntityType>
         <EntityType Name="Student">
           <Key>
             <PropertyRef Name="Sid" />
@@ -677,6 +743,7 @@
           <Property Name="DeptId" Type="Int32" />
           <NavigationProperty Name="Department" Relationship="Self.FK_Student_Department" FromRole="Student" ToRole="Department" />
           <NavigationProperty Name="Std_exam" Relationship="Self.FK_Std_exam_Student" FromRole="Student" ToRole="Std_exam" />
+          <NavigationProperty Name="Std_Grades" Relationship="Self.FK_Std_Grades_Student" FromRole="Student" ToRole="Std_Grades" />
           <NavigationProperty Name="Courses" Relationship="Self.Std_course" FromRole="Student" ToRole="Course" />
         </EntityType>
         <EntityType Name="sysdiagram">
@@ -795,6 +862,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Std_Grades_Exam">
+          <End Role="Exam" Type="Self.Exam" Multiplicity="1" />
+          <End Role="Std_Grades" Type="Self.Std_Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Exam">
+              <PropertyRef Name="Enumber" />
+            </Principal>
+            <Dependent Role="Std_Grades">
+              <PropertyRef Name="Enumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ques_Choices_Question">
           <End Role="Question" Type="Self.Question" Multiplicity="1" />
           <End Role="Ques_Choices" Type="Self.Ques_Choices" Multiplicity="*" />
@@ -831,6 +910,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Std_Grades_Student">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="Std_Grades" Type="Self.Std_Grades" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="Sid" />
+            </Principal>
+            <Dependent Role="Std_Grades">
+              <PropertyRef Name="Sid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="Crs_Ins">
           <End Role="Course" Type="Self.Course" Multiplicity="*" />
           <End Role="Instructor" Type="Self.Instructor" Multiplicity="*" />
@@ -847,6 +938,7 @@
           <EntitySet Name="Ques_Choices" EntityType="Self.Ques_Choices" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="Std_exam" EntityType="Self.Std_exam" />
+          <EntitySet Name="Std_Grades" EntityType="Self.Std_Grades" />
           <EntitySet Name="Students" EntityType="Self.Student" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
           <EntitySet Name="Topics" EntityType="Self.Topic" />
@@ -882,6 +974,10 @@
             <End Role="Exam" EntitySet="Exams" />
             <End Role="Std_exam" EntitySet="Std_exam" />
           </AssociationSet>
+          <AssociationSet Name="FK_Std_Grades_Exam" Association="Self.FK_Std_Grades_Exam">
+            <End Role="Exam" EntitySet="Exams" />
+            <End Role="Std_Grades" EntitySet="Std_Grades" />
+          </AssociationSet>
           <AssociationSet Name="FK_Ques_Choices_Question" Association="Self.FK_Ques_Choices_Question">
             <End Role="Question" EntitySet="Questions" />
             <End Role="Ques_Choices" EntitySet="Ques_Choices" />
@@ -893,6 +989,10 @@
           <AssociationSet Name="FK_Std_exam_Student" Association="Self.FK_Std_exam_Student">
             <End Role="Student" EntitySet="Students" />
             <End Role="Std_exam" EntitySet="Std_exam" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Std_Grades_Student" Association="Self.FK_Std_Grades_Student">
+            <End Role="Student" EntitySet="Students" />
+            <End Role="Std_Grades" EntitySet="Std_Grades" />
           </AssociationSet>
           <AssociationSet Name="Crs_Ins" Association="Self.Crs_Ins">
             <End Role="Course" EntitySet="Courses" />
@@ -929,11 +1029,18 @@
           <FunctionImport Name="Delete_Student" ReturnType="Collection(String)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="deleteStudentExam" ReturnType="Collection(String)">
+            <Parameter Name="Sid" Mode="In" Type="Int32" />
+            <Parameter Name="exid" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="generateExam" ReturnType="Collection(Model.generateExam_Result)">
             <Parameter Name="id" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getCoursesByDeptID" ReturnType="Collection(Model.getCoursesByDeptID_Result)">
             <Parameter Name="deptID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getStudnetGrades" ReturnType="Collection(Model.getStudnetGrades_Result)">
+            <Parameter Name="sid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="Insert_Choice" ReturnType="Collection(String)">
             <Parameter Name="q_id" Mode="In" Type="Int32" />
@@ -986,6 +1093,11 @@
             <Parameter Name="dob" Mode="In" Type="DateTime" />
             <Parameter Name="address" Mode="In" Type="String" />
             <Parameter Name="deptid" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="saveStudentGrade">
+            <Parameter Name="sid" Mode="In" Type="Int32" />
+            <Parameter Name="eid" Mode="In" Type="Int32" />
+            <Parameter Name="grad" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="Select_Course_byName" ReturnType="Collection(Model.Select_Course_byName_Result)">
             <Parameter Name="name" Mode="In" Type="String" />
@@ -1112,6 +1224,13 @@
           <Property Type="String" Name="CrsName" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="InsName" Nullable="false" MaxLength="50" />
         </ComplexType>
+        <ComplexType Name="getStudnetGrades_Result">
+          <Property Type="Int32" Name="CrsId" Nullable="false" />
+          <Property Type="String" Name="CrsName" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="Enumber" Nullable="false" />
+          <Property Type="String" Name="Edescription" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="grade" Nullable="true" MaxLength="10" />
+        </ComplexType>
         <ComplexType Name="Select_Course_byName_Result">
           <Property Type="Int32" Name="Course_ID" Nullable="false" />
           <Property Type="String" Name="Course_name" Nullable="true" MaxLength="30" />
@@ -1234,6 +1353,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Std_Grades">
+            <EntityTypeMapping TypeName="Model.Std_Grades">
+              <MappingFragment StoreEntitySet="Std_Grades">
+                <ScalarProperty Name="Sid" ColumnName="Sid" />
+                <ScalarProperty Name="Enumber" ColumnName="Enumber" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Students">
             <EntityTypeMapping TypeName="Model.Student">
               <MappingFragment StoreEntitySet="Student">
@@ -1298,6 +1426,7 @@
           <FunctionImportMapping FunctionImportName="Delete_Instructor" FunctionName="Model.Store.Delete_Instructor" />
           <FunctionImportMapping FunctionImportName="Delete_Question" FunctionName="Model.Store.Delete_Question" />
           <FunctionImportMapping FunctionImportName="Delete_Student" FunctionName="Model.Store.Delete_Student" />
+          <FunctionImportMapping FunctionImportName="deleteStudentExam" FunctionName="Model.Store.deleteStudentExam" />
           <FunctionImportMapping FunctionImportName="generateExam" FunctionName="Model.Store.generateExam">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.generateExam_Result">
@@ -1320,6 +1449,17 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getStudnetGrades" FunctionName="Model.Store.getStudnetGrades">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.getStudnetGrades_Result">
+                <ScalarProperty Name="CrsId" ColumnName="CrsId" />
+                <ScalarProperty Name="CrsName" ColumnName="CrsName" />
+                <ScalarProperty Name="Enumber" ColumnName="Enumber" />
+                <ScalarProperty Name="Edescription" ColumnName="Edescription" />
+                <ScalarProperty Name="grade" ColumnName="grade" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="Insert_Choice" FunctionName="Model.Store.Insert_Choice" />
           <FunctionImportMapping FunctionImportName="Insert_Course" FunctionName="Model.Store.Insert_Course" />
           <FunctionImportMapping FunctionImportName="Insert_Crs_Topic" FunctionName="Model.Store.Insert_Crs_Topic" />
@@ -1329,6 +1469,7 @@
           <FunctionImportMapping FunctionImportName="Insert_Std_Answer" FunctionName="Model.Store.Insert_Std_Answer" />
           <FunctionImportMapping FunctionImportName="Insert_Student" FunctionName="Model.Store.Insert_Student" />
           <FunctionImportMapping FunctionImportName="newStudnet" FunctionName="Model.Store.newStudnet" />
+          <FunctionImportMapping FunctionImportName="saveStudentGrade" FunctionName="Model.Store.saveStudentGrade" />
           <FunctionImportMapping FunctionImportName="Select_Course_byName" FunctionName="Model.Store.Select_Course_byName">
             <ResultMapping>
               <ComplexTypeMapping TypeName="Model.Select_Course_byName_Result">

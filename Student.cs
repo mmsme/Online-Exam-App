@@ -18,6 +18,7 @@ namespace Online_Exam_App
         public Student()
         {
             this.Std_exam = new HashSet<Std_exam>();
+            this.Std_Grades = new HashSet<Std_Grades>();
             this.Courses = new HashSet<Course>();
         }
     
@@ -31,6 +32,8 @@ namespace Online_Exam_App
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Std_exam> Std_exam { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Std_Grades> Std_Grades { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Course> Courses { get; set; }
     }

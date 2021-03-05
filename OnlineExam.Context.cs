@@ -34,6 +34,7 @@ namespace Online_Exam_App
         public virtual DbSet<Ques_Choices> Ques_Choices { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
         public virtual DbSet<Std_exam> Std_exam { get; set; }
+        public virtual DbSet<Std_Grades> Std_Grades { get; set; }
         public virtual DbSet<Student> Students { get; set; }
         public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
@@ -122,6 +123,19 @@ namespace Online_Exam_App
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Delete_Student", idParameter);
         }
     
+        public virtual ObjectResult<string> deleteStudentExam(Nullable<int> sid, Nullable<int> exid)
+        {
+            var sidParameter = sid.HasValue ?
+                new ObjectParameter("Sid", sid) :
+                new ObjectParameter("Sid", typeof(int));
+    
+            var exidParameter = exid.HasValue ?
+                new ObjectParameter("exid", exid) :
+                new ObjectParameter("exid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("deleteStudentExam", sidParameter, exidParameter);
+        }
+    
         public virtual ObjectResult<generateExam_Result> generateExam(Nullable<int> id)
         {
             var idParameter = id.HasValue ?
@@ -138,6 +152,15 @@ namespace Online_Exam_App
                 new ObjectParameter("deptID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCoursesByDeptID_Result>("getCoursesByDeptID", deptIDParameter);
+        }
+    
+        public virtual ObjectResult<getStudnetGrades_Result> getStudnetGrades(Nullable<int> sid)
+        {
+            var sidParameter = sid.HasValue ?
+                new ObjectParameter("sid", sid) :
+                new ObjectParameter("sid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getStudnetGrades_Result>("getStudnetGrades", sidParameter);
         }
     
         public virtual ObjectResult<string> Insert_Choice(Nullable<int> q_id, string choice, string ch_body)
@@ -319,6 +342,23 @@ namespace Online_Exam_App
                 new ObjectParameter("deptid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("newStudnet", fnameParameter, lnameParameter, dobParameter, addressParameter, deptidParameter);
+        }
+    
+        public virtual int saveStudentGrade(Nullable<int> sid, Nullable<int> eid, string grad)
+        {
+            var sidParameter = sid.HasValue ?
+                new ObjectParameter("sid", sid) :
+                new ObjectParameter("sid", typeof(int));
+    
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("eid", eid) :
+                new ObjectParameter("eid", typeof(int));
+    
+            var gradParameter = grad != null ?
+                new ObjectParameter("grad", grad) :
+                new ObjectParameter("grad", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("saveStudentGrade", sidParameter, eidParameter, gradParameter);
         }
     
         public virtual ObjectResult<Select_Course_byName_Result> Select_Course_byName(string name)

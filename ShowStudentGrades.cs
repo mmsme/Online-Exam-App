@@ -10,10 +10,10 @@ using System.Windows.Forms;
 
 namespace Online_Exam_App
 {
-    public partial class Courses_List : Form
+    public partial class ShowStudentGrades : Form
     {
         private int studentID;
-        public Courses_List(int id)
+        public ShowStudentGrades(int id)
         {
             InitializeComponent();
             this.studentID = id;
@@ -26,16 +26,11 @@ namespace Online_Exam_App
             dashbord.Show();
         }
 
-        private void Courses_List_Load(object sender, EventArgs e)
+        private void ShowStudentGrades_Load(object sender, EventArgs e)
         {
-            OnlineExam ent = new OnlineExam();
-            var student = (from s in ent.Students
-                           where s.Sid == studentID
-                           select s).First();
-
-            var list = ent.getCoursesByDeptID(student.DeptId).ToList();
-
-            dataGridView1.DataSource = list;
+            OnlineExam exam = new OnlineExam();
+            var grades = exam.getStudnetGrades(studentID);
+            dataGridView1.DataSource = grades.ToList();
         }
     }
 }

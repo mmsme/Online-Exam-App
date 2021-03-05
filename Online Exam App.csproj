@@ -91,6 +91,9 @@
     <Compile Include="getCoursesByDeptID_Result.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
+    <Compile Include="getStudnetGrades_Result.cs">
+      <DependentUpon>OnlineExam.tt</DependentUpon>
+    </Compile>
     <Compile Include="Home Form.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,6 +218,12 @@
     <Compile Include="Select_Student_Result.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
+    <Compile Include="ShowStudentGrades.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShowStudentGrades.Designer.cs">
+      <DependentUpon>ShowStudentGrades.cs</DependentUpon>
+    </Compile>
     <Compile Include="sp_helpdiagramdefinition_Result.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
@@ -222,6 +231,9 @@
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
     <Compile Include="Std_exam.cs">
+      <DependentUpon>OnlineExam.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Std_Grades.cs">
       <DependentUpon>OnlineExam.tt</DependentUpon>
     </Compile>
     <Compile Include="Student Dashbord.cs">
@@ -300,6 +312,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShowStudentGrades.resx">
+      <DependentUpon>ShowStudentGrades.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Student Dashbord.resx">
       <DependentUpon>Student Dashbord.cs</DependentUpon>
