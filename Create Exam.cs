@@ -150,59 +150,125 @@ namespace Online_Exam_App
             return false;
         }
 
+        // add
         private void button1_Click(object sender, EventArgs e)
         {
             OnlineExam ent = new OnlineExam();
-            try
+            int crsId = 0;
+            string desc = textBox2.Text;
+            if (comboBox2.SelectedItem != null)
             {
-                int crsId = int.Parse(comboBox2.SelectedItem.ToString().Split(',')[0]);
-                if (!isDataValid())
-                {
-                    MessageBox.Show("There is Data Is Missing","Waring");
-                    return;
-                }
+                crsId = int.Parse(comboBox2.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("invalid Course ID entred", "Waring");
+                return;
+            }
+            int nMcq = (int)numericUpDown1.Value;
 
-                string desc = textBox2.Text;
-                int nMcq = (int)numericUpDown1.Value;
+            if (isNumberOfMcqOutOfRange(crsId, nMcq))
+            {
+                MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue","Waring");
+                return;
+            }
 
-                if (isNumberOfMcqOutOfRange(crsId, nMcq))
-                {
-                    MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue","Waring");
-                    return;
-                }
-
-                int nTF = (int)numericUpDown2.Value;
-                if (isNumberOfTFRange(crsId, nTF))
-                {
-                    MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue","Waring");
-                    return;
-                }
+            int nTF = (int)numericUpDown2.Value;
+            if (isNumberOfTFRange(crsId, nTF))
+            {
+                MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue","Waring");
+                return;
+            }
 
                 
-                int duration = (int)numericUpDown3.Value;
-                Exam exam = new Exam() 
-                { 
-                    CrsId = crsId,
-                    Edescription = desc,
-                    NumOfMcq = nMcq,
-                    NumOfTF = nTF,
-                    Eduration =  duration,
-                    Edate = DateTime.Now
-                };
+            int duration = (int)numericUpDown3.Value;
+            Exam exam = new Exam() 
+            { 
+                CrsId = crsId,
+                Edescription = desc,
+                NumOfMcq = nMcq,
+                NumOfTF = nTF,
+                Eduration =  duration,
+                Edate = DateTime.Now
+            };
 
-                ent.Exams.Add(exam);
-                ent.SaveChanges();
-                loadCourse();
-                loadExams(crsId);
-            }
-            catch (Exception)
-            {
-
-                MessageBox.Show("invalid Course ID entred", "Waring");
-            }
+            ent.Exams.Add(exam);
+            ent.SaveChanges();
+            loadCourse();
+            loadExams(crsId);
+          
           
         }
 
+        // update
+        private void Update_Click(object sender, EventArgs e)
+        {
+            int examId = 0;
+            int crsId = 0;
+            OnlineExam ent = new OnlineExam();
 
+            if (comboBox2.SelectedItem != null)
+            {
+                crsId = int.Parse(comboBox2.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("invalid Course ID entred", "Waring");
+                return;
+            }
+
+            if (comboBox1.SelectedItem != null)
+            {
+                examId = int.Parse(comboBox1.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("There Is No Exam Selected");
+                return;
+            }
+
+            if (!isDataValid())
+            {
+                MessageBox.Show("There is Data Is Missing", "Waring");
+                return;
+            }
+
+            string desc = textBox2.Text;
+            int nMcq = (int)numericUpDown1.Value;
+
+            if (isNumberOfMcqOutOfRange(crsId, nMcq))
+            {
+                MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue", "Waring");
+                return;
+            }
+
+            int nTF = (int)numericUpDown2.Value;
+            if (isNumberOfTFRange(crsId, nTF))
+            {
+                MessageBox.Show("The Number Is out of Range\nplease go and insert more Question to Continue", "Waring");
+                return;
+            }
+
+
+            int duration = (int)numericUpDown3.Value;
+            if (duration < 10)
+            {
+                MessageBox.Show("Mim Duration is 10 Min");
+                return;
+            }
+
+            var exam = (from ex in ent.Exams
+                        where ex.Enumber == examId
+                        select ex).First();
+
+            exam.Edescription = desc;
+            exam.Eduration = duration;
+            exam.NumOfMcq = nMcq;
+            exam.NumOfTF = nTF;
+
+            ent.SaveChanges();
+            loadCourse();
+            loadExams(crsId);
+        }
     }
 }
