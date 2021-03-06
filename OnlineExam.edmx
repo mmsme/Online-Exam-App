@@ -65,7 +65,7 @@
           <Property Name="Type" Type="varchar" MaxLength="3" />
           <Property Name="Degree" Type="float" />
           <Property Name="Qcontent" Type="nvarchar" MaxLength="200" />
-          <Property Name="Answer" Type="char" MaxLength="500" />
+          <Property Name="Answer" Type="nchar" MaxLength="10" />
           <Property Name="CrsId" Type="int" />
         </EntityType>
         <EntityType Name="Std_course">
@@ -404,18 +404,6 @@
           <Parameter Name="name" Type="varchar" Mode="In" />
           <Parameter Name="dept_id" Type="int" Mode="In" />
         </Function>
-        <Function Name="Insert_Question" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="Q_ID" Type="int" Mode="In" />
-          <Parameter Name="Q_Body" Type="nvarchar" Mode="In" />
-          <Parameter Name="Q_Type" Type="varchar" Mode="In" />
-          <Parameter Name="Q_degree" Type="int" Mode="In" />
-          <Parameter Name="Q_Answer" Type="char" Mode="In" />
-          <Parameter Name="Crs_ID" Type="int" Mode="In" />
-          <Parameter Name="Choice_Body1" Type="varchar" Mode="In" />
-          <Parameter Name="Choice_Body2" Type="varchar" Mode="In" />
-          <Parameter Name="Choice_Body3" Type="varchar" Mode="In" />
-          <Parameter Name="Choice_Body4" Type="varchar" Mode="In" />
-        </Function>
         <Function Name="Insert_Std_Answer" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sid" Type="int" Mode="In" />
           <Parameter Name="eid" Type="int" Mode="In" />
@@ -428,6 +416,13 @@
           <Parameter Name="birth_date" Type="date" Mode="In" />
           <Parameter Name="Address" Type="nvarchar" Mode="In" />
           <Parameter Name="department_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="insertQuest" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="type" Type="nchar" Mode="In" />
+          <Parameter Name="degree" Type="float" Mode="In" />
+          <Parameter Name="content" Type="varchar" Mode="In" />
+          <Parameter Name="ans" Type="varchar" Mode="In" />
+          <Parameter Name="crsId" Type="int" Mode="In" />
         </Function>
         <Function Name="newStudnet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="fname" Type="varchar" Mode="In" />
@@ -702,7 +697,7 @@
           <Property Name="Type" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Name="Degree" Type="Double" />
           <Property Name="Qcontent" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Answer" Type="String" MaxLength="500" FixedLength="true" Unicode="false" />
+          <Property Name="Answer" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="CrsId" Type="Int32" />
           <NavigationProperty Name="Course" Relationship="Self.FK_Question_Course" FromRole="Question" ToRole="Course" />
           <NavigationProperty Name="Course1" Relationship="Self.FK_Question_Course1" FromRole="Question" ToRole="Course" />
@@ -1068,18 +1063,6 @@
             <Parameter Name="name" Mode="In" Type="String" />
             <Parameter Name="dept_id" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="Insert_Question" ReturnType="Collection(String)">
-            <Parameter Name="Q_ID" Mode="In" Type="Int32" />
-            <Parameter Name="Q_Body" Mode="In" Type="String" />
-            <Parameter Name="Q_Type" Mode="In" Type="String" />
-            <Parameter Name="Q_degree" Mode="In" Type="Int32" />
-            <Parameter Name="Q_Answer" Mode="In" Type="String" />
-            <Parameter Name="Crs_ID" Mode="In" Type="Int32" />
-            <Parameter Name="Choice_Body1" Mode="In" Type="String" />
-            <Parameter Name="Choice_Body2" Mode="In" Type="String" />
-            <Parameter Name="Choice_Body3" Mode="In" Type="String" />
-            <Parameter Name="Choice_Body4" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="Insert_Std_Answer">
             <Parameter Name="sid" Mode="In" Type="Int32" />
             <Parameter Name="eid" Mode="In" Type="Int32" />
@@ -1092,6 +1075,13 @@
             <Parameter Name="birth_date" Mode="In" Type="DateTime" />
             <Parameter Name="Address" Mode="In" Type="String" />
             <Parameter Name="department_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="insertQuest" ReturnType="Collection(Model.insertQuest_Result)">
+            <Parameter Name="type" Mode="In" Type="String" />
+            <Parameter Name="degree" Mode="In" Type="Double" />
+            <Parameter Name="content" Mode="In" Type="String" />
+            <Parameter Name="ans" Mode="In" Type="String" />
+            <Parameter Name="crsId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="newStudnet">
             <Parameter Name="fname" Mode="In" Type="String" />
@@ -1221,7 +1211,7 @@
           <Property Type="String" Name="Type" Nullable="true" MaxLength="3" />
           <Property Type="Double" Name="Degree" Nullable="true" />
           <Property Type="String" Name="Qcontent" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="Answer" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="10" />
           <Property Type="Int32" Name="CrsId" Nullable="true" />
           <Property Type="Guid" Name="rnd" Nullable="true" />
         </ComplexType>
@@ -1242,6 +1232,14 @@
           <Property Type="Int32" Name="Enumber" Nullable="false" />
           <Property Type="String" Name="Edescription" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="grade" Nullable="true" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="insertQuest_Result">
+          <Property Type="Int32" Name="QuesId" Nullable="false" />
+          <Property Type="String" Name="Type" Nullable="true" MaxLength="3" />
+          <Property Type="Double" Name="Degree" Nullable="true" />
+          <Property Type="String" Name="Qcontent" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="10" />
+          <Property Type="Int32" Name="CrsId" Nullable="true" />
         </ComplexType>
         <ComplexType Name="Select_Course_byName_Result">
           <Property Type="Int32" Name="Course_ID" Nullable="false" />
@@ -1269,7 +1267,7 @@
         <ComplexType Name="Select_Question_Result">
           <Property Type="String" Name="Qcontent" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="Type" Nullable="true" MaxLength="3" />
-          <Property Type="String" Name="Answer" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="Answer" Nullable="true" MaxLength="10" />
         </ComplexType>
         <ComplexType Name="Select_Student_Result">
           <Property Type="Int32" Name="Student_ID" Nullable="false" />
@@ -1487,9 +1485,20 @@
           <FunctionImportMapping FunctionImportName="Insert_Crs_Topic" FunctionName="Model.Store.Insert_Crs_Topic" />
           <FunctionImportMapping FunctionImportName="Insert_Department" FunctionName="Model.Store.Insert_Department" />
           <FunctionImportMapping FunctionImportName="Insert_Instructor" FunctionName="Model.Store.Insert_Instructor" />
-          <FunctionImportMapping FunctionImportName="Insert_Question" FunctionName="Model.Store.Insert_Question" />
           <FunctionImportMapping FunctionImportName="Insert_Std_Answer" FunctionName="Model.Store.Insert_Std_Answer" />
           <FunctionImportMapping FunctionImportName="Insert_Student" FunctionName="Model.Store.Insert_Student" />
+          <FunctionImportMapping FunctionImportName="insertQuest" FunctionName="Model.Store.insertQuest">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.insertQuest_Result">
+                <ScalarProperty Name="QuesId" ColumnName="QuesId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Degree" ColumnName="Degree" />
+                <ScalarProperty Name="Qcontent" ColumnName="Qcontent" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="CrsId" ColumnName="CrsId" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="newStudnet" FunctionName="Model.Store.newStudnet" />
           <FunctionImportMapping FunctionImportName="saveStudentGrade" FunctionName="Model.Store.saveStudentGrade" />
           <FunctionImportMapping FunctionImportName="Select_Course_byName" FunctionName="Model.Store.Select_Course_byName">

@@ -237,51 +237,6 @@ namespace Online_Exam_App
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Insert_Instructor", nameParameter, dept_idParameter);
         }
     
-        public virtual ObjectResult<string> Insert_Question(Nullable<int> q_ID, string q_Body, string q_Type, Nullable<int> q_degree, string q_Answer, Nullable<int> crs_ID, string choice_Body1, string choice_Body2, string choice_Body3, string choice_Body4)
-        {
-            var q_IDParameter = q_ID.HasValue ?
-                new ObjectParameter("Q_ID", q_ID) :
-                new ObjectParameter("Q_ID", typeof(int));
-    
-            var q_BodyParameter = q_Body != null ?
-                new ObjectParameter("Q_Body", q_Body) :
-                new ObjectParameter("Q_Body", typeof(string));
-    
-            var q_TypeParameter = q_Type != null ?
-                new ObjectParameter("Q_Type", q_Type) :
-                new ObjectParameter("Q_Type", typeof(string));
-    
-            var q_degreeParameter = q_degree.HasValue ?
-                new ObjectParameter("Q_degree", q_degree) :
-                new ObjectParameter("Q_degree", typeof(int));
-    
-            var q_AnswerParameter = q_Answer != null ?
-                new ObjectParameter("Q_Answer", q_Answer) :
-                new ObjectParameter("Q_Answer", typeof(string));
-    
-            var crs_IDParameter = crs_ID.HasValue ?
-                new ObjectParameter("Crs_ID", crs_ID) :
-                new ObjectParameter("Crs_ID", typeof(int));
-    
-            var choice_Body1Parameter = choice_Body1 != null ?
-                new ObjectParameter("Choice_Body1", choice_Body1) :
-                new ObjectParameter("Choice_Body1", typeof(string));
-    
-            var choice_Body2Parameter = choice_Body2 != null ?
-                new ObjectParameter("Choice_Body2", choice_Body2) :
-                new ObjectParameter("Choice_Body2", typeof(string));
-    
-            var choice_Body3Parameter = choice_Body3 != null ?
-                new ObjectParameter("Choice_Body3", choice_Body3) :
-                new ObjectParameter("Choice_Body3", typeof(string));
-    
-            var choice_Body4Parameter = choice_Body4 != null ?
-                new ObjectParameter("Choice_Body4", choice_Body4) :
-                new ObjectParameter("Choice_Body4", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Insert_Question", q_IDParameter, q_BodyParameter, q_TypeParameter, q_degreeParameter, q_AnswerParameter, crs_IDParameter, choice_Body1Parameter, choice_Body2Parameter, choice_Body3Parameter, choice_Body4Parameter);
-        }
-    
         public virtual int Insert_Std_Answer(Nullable<int> sid, Nullable<int> eid, Nullable<int> qid, string stdAnsw)
         {
             var sidParameter = sid.HasValue ?
@@ -326,6 +281,31 @@ namespace Online_Exam_App
                 new ObjectParameter("department_id", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Insert_Student", fnameParameter, lnameParameter, birth_dateParameter, addressParameter, department_idParameter);
+        }
+    
+        public virtual ObjectResult<insertQuest_Result> insertQuest(string type, Nullable<double> degree, string content, string ans, Nullable<int> crsId)
+        {
+            var typeParameter = type != null ?
+                new ObjectParameter("type", type) :
+                new ObjectParameter("type", typeof(string));
+    
+            var degreeParameter = degree.HasValue ?
+                new ObjectParameter("degree", degree) :
+                new ObjectParameter("degree", typeof(double));
+    
+            var contentParameter = content != null ?
+                new ObjectParameter("content", content) :
+                new ObjectParameter("content", typeof(string));
+    
+            var ansParameter = ans != null ?
+                new ObjectParameter("ans", ans) :
+                new ObjectParameter("ans", typeof(string));
+    
+            var crsIdParameter = crsId.HasValue ?
+                new ObjectParameter("crsId", crsId) :
+                new ObjectParameter("crsId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<insertQuest_Result>("insertQuest", typeParameter, degreeParameter, contentParameter, ansParameter, crsIdParameter);
         }
     
         public virtual int newStudnet(string fname, string lname, Nullable<System.DateTime> dob, string address, Nullable<int> deptid)

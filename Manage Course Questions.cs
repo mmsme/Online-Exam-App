@@ -17,6 +17,7 @@ namespace Online_Exam_App
         {
             InitializeComponent();
             instructorID = id;
+           
         }
 
         private void button4_Click(object sender, EventArgs e)
@@ -79,10 +80,11 @@ namespace Online_Exam_App
                 // case 1: TF
                 // don't need ans group
                 ansGroup.Hide();
+                comboBox3.SelectedIndex = 1;
             }
             else
             {
-
+                comboBox3.SelectedIndex = 0;
                 List<string> chList = new List<string>(4);
                 ansGroup.Show();
                 var choices = ent.Select_MCQ_Question(quest.QuesId).ToList();
@@ -118,6 +120,115 @@ namespace Online_Exam_App
             {
                 MessageBox.Show("Please Select Questions","Waring");
             }
+        }
+
+        private bool isQuestDataValid()
+        {
+            if (comboBox3.SelectedItem == null ||
+                qcont.Text == string.Empty ||
+                qmodel.Text == string.Empty )
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool isChoiceDataValid()
+        {
+            if (
+                ansA.Text == string.Empty ||
+                ansB.Text == string.Empty ||
+                ansC.Text == string.Empty ||
+                ansD.Text == string.Empty
+                )
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int crsID = 0;
+            if (comboBox1.SelectedItem != null)
+            {
+                crsID = int.Parse(comboBox1.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select course id","Waring");
+                return;
+            }
+
+            if (!isQuestDataValid())
+            {
+                MessageBox.Show("Please Enter Valid Data", "Waring");
+                return;
+            }
+
+            string qbody = qcont.Text;
+            string qtype = comboBox3.SelectedItem.ToString();
+            int qdeg = (int)qdegree.Value;
+            string modelAns = qmodel.Text;
+
+            OnlineExam ent = new OnlineExam();
+            var last =  ent.insertQuest(qtype,qdeg,qbody,modelAns,crsID).First();
+            ////////////////////////////////////////////////////////////////////
+            if (last.Type.ToLower() == "mcq")
+            {
+                insertChoicesForQuestById(last.QuesId);
+            }
+
+           
+            loadCourse();
+            loadQuestions(crsID);
+            qcont.Text = qmodel.Text = string.Empty;
+            qdegree.Value = 1;
+            comboBox3.Text = string.Empty;
+        }
+
+        private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string type = comboBox3.SelectedItem.ToString();
+
+            if (type == "TF")
+            {
+                ansGroup.Hide();
+            }
+            else
+            {
+                ansGroup.Show();
+            }
+        }
+
+        private void insertChoicesForQuestById(int questID)
+        {
+            OnlineExam ent = new OnlineExam();
+            if (!isChoiceDataValid())
+            {
+                MessageBox.Show("Please Enter All Data Rrequired", "Waring");
+                return;
+            }
+
+            Dictionary<string, TextBox> choices = new Dictionary<string, TextBox>(4);
+            choices.Add("a", ansA);
+            choices.Add("b", ansB);
+            choices.Add("c", ansC);
+            choices.Add("d", ansD);
+            foreach (var item in choices)
+            {
+                Ques_Choices ques_Choices = new Ques_Choices()
+                {
+                    QuesId = questID,
+                    choices = item.Key,
+                    body = item.Value.Text
+                };
+
+                ent.Ques_Choices.Add(ques_Choices);
+                ent.SaveChanges();
+            }
+
+            ansA.Text = ansB.Text = ansC.Text = ansD.Text = string.Empty;
         }
     }
 }

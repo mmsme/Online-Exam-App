@@ -191,9 +191,24 @@ namespace Online_Exam_App
             // 
             this.qdegree.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.qdegree.Location = new System.Drawing.Point(205, 238);
+            this.qdegree.Maximum = new decimal(new int[] {
+            10,
+            0,
+            0,
+            0});
+            this.qdegree.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             this.qdegree.Name = "qdegree";
             this.qdegree.Size = new System.Drawing.Size(303, 30);
             this.qdegree.TabIndex = 25;
+            this.qdegree.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
             // 
             // label5
             // 
@@ -210,10 +225,14 @@ namespace Online_Exam_App
             // 
             this.comboBox3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.comboBox3.FormattingEnabled = true;
+            this.comboBox3.Items.AddRange(new object[] {
+            "MCQ",
+            "TF"});
             this.comboBox3.Location = new System.Drawing.Point(205, 137);
             this.comboBox3.Name = "comboBox3";
             this.comboBox3.Size = new System.Drawing.Size(303, 30);
             this.comboBox3.TabIndex = 23;
+            this.comboBox3.SelectedIndexChanged += new System.EventHandler(this.comboBox3_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -341,6 +360,7 @@ namespace Online_Exam_App
             this.button1.TabIndex = 11;
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // ansGroup
             // 

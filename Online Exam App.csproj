@@ -103,6 +103,9 @@
     <Compile Include="Home Form.Designer.cs">
       <DependentUpon>Home Form.cs</DependentUpon>
     </Compile>
+    <Compile Include="insertQuest_Result.cs">
+      <DependentUpon>OnlineExam.tt</DependentUpon>
+    </Compile>
     <Compile Include="Instructor Login.cs">
       <SubType>Form</SubType>
     </Compile>
