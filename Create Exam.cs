@@ -36,6 +36,7 @@ namespace Online_Exam_App
         {
             OnlineExam ent = new OnlineExam();
             var crs = ent.getInsCourses(instructorID);
+          
             comboBox2.Items.Clear();
             foreach (var item in crs)
             {

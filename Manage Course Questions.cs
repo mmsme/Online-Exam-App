@@ -69,21 +69,21 @@ namespace Online_Exam_App
                          select q).First();
 
             // Show Quest Info
-            qcont.Text = quest.Qcontent;
+            qcont.Text = quest.Qcontent.Trim();
             qdegree.Value = (int)quest.Degree;
-            qmodel.Text = quest.Answer;
-
+            qmodel.Text = quest.Answer.Trim();
 
             // Check Type Of Quest To select Display Method
-            if (quest.Type.ToLower() == "tf")
+            if (quest.Type.ToLower().Trim() == "tf")
             {
                 // case 1: TF
                 // don't need ans group
-                ansGroup.Hide();
+               
                 comboBox3.SelectedIndex = 1;
             }
-            else
+            else if(quest.Type.ToLower().Trim() == "mcq")
             {
+               
                 comboBox3.SelectedIndex = 0;
                 List<string> chList = new List<string>(4);
                 ansGroup.Show();
@@ -94,6 +94,7 @@ namespace Online_Exam_App
                     textBoxes[i].Text = choices[i].body;
                 }
             }
+            viewAnswerGroup();
         }
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,10 +167,10 @@ namespace Online_Exam_App
                 return;
             }
 
-            string qbody = qcont.Text;
+            string qbody = qcont.Text.Trim();
             string qtype = comboBox3.SelectedItem.ToString();
             int qdeg = (int)qdegree.Value;
-            string modelAns = qmodel.Text;
+            string modelAns = qmodel.Text.Trim();
 
             OnlineExam ent = new OnlineExam();
             var last =  ent.insertQuest(qtype,qdeg,qbody,modelAns,crsID).First();
@@ -190,15 +191,7 @@ namespace Online_Exam_App
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
             string type = comboBox3.SelectedItem.ToString();
-
-            if (type == "TF")
-            {
-                ansGroup.Hide();
-            }
-            else
-            {
-                ansGroup.Show();
-            }
+            viewAnswerGroup();
         }
 
         private void insertChoicesForQuestById(int questID)
@@ -221,13 +214,99 @@ namespace Online_Exam_App
                 {
                     QuesId = questID,
                     choices = item.Key,
-                    body = item.Value.Text
+                    body = item.Value.Text.Trim()
                 };
 
                 ent.Ques_Choices.Add(ques_Choices);
                 ent.SaveChanges();
             }
 
+            ansA.Text = ansB.Text = ansC.Text = ansD.Text = string.Empty;
+        }
+
+        private void viewAnswerGroup()
+        {
+            if (comboBox3.SelectedItem == null || comboBox3.SelectedIndex == 1)
+            {
+                ansGroup.Hide();
+            }
+            else if (comboBox3.SelectedIndex == 0)
+            {
+                ansGroup.Show();
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            int questID = 0;
+            int crsID = 0;
+            if (comboBox2.SelectedItem != null)
+            {
+                questID = int.Parse(comboBox2.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select quest id","Waring");
+            }
+
+            if (comboBox1.SelectedItem != null)
+            {
+                crsID = int.Parse(comboBox1.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select course id", "Waring");
+                return;
+            }
+
+            if (!isQuestDataValid())
+            {
+                MessageBox.Show("Please Enter Valid Data", "Waring");
+                return;
+            }
+
+            string qbody = qcont.Text.Trim();
+            int qdeg = (int)qdegree.Value;
+            string modelAns = qmodel.Text.Trim();
+
+            OnlineExam ent = new OnlineExam();
+            var quest = (from q in ent.Questions
+                         where q.QuesId == questID
+                         select q).First();
+
+            quest.Qcontent = qbody;
+            quest.Answer = modelAns;
+            quest.Degree = qdeg;
+            
+            if (quest.Type.ToLower().Trim() == "mcq")
+            {
+                updateChoice(questID);
+            }
+
+            ent.SaveChanges();
+            loadCourse();
+            loadQuestions(crsID);
+            questionInfo(questID);
+            qcont.Text = qmodel.Text = string.Empty;
+            qdegree.Value = 1;
+            comboBox3.Text = string.Empty;
+        }
+
+        private void updateChoice(int QuestID)
+        {
+            OnlineExam ent = new OnlineExam();
+            if (!isChoiceDataValid())
+            {
+                MessageBox.Show("Please Enter All Data Rrequired", "Waring");
+                return;
+            }
+
+            var chlist = ent.Select_MCQ_Question(QuestID).ToList();
+            chlist[0].body = ansA.Text; 
+            chlist[1].body = ansB.Text; 
+            chlist[2].body = ansC.Text; 
+            chlist[3].body = ansD.Text;
+            ent.SaveChanges();
             ansA.Text = ansB.Text = ansC.Text = ansD.Text = string.Empty;
         }
     }
