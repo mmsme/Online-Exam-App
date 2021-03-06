@@ -81,9 +81,9 @@ namespace Online_Exam_App
             label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(168)))), ((int)(((byte)(38)))));
             label1.Location = new System.Drawing.Point(180, 12);
             label1.Name = "label1";
-            label1.Size = new System.Drawing.Size(232, 40);
+            label1.Size = new System.Drawing.Size(267, 40);
             label1.TabIndex = 0;
-            label1.Text = "Manage Topics";
+            label1.Text = "Manage Question";
             // 
             // panel2
             // 
@@ -441,6 +441,7 @@ namespace Online_Exam_App
             this.Controls.Add(this.panel1);
             this.Name = "Manage_Course_Questions";
             this.Text = "Manage_Course_Questions";
+            this.Load += new System.EventHandler(this.Manage_Course_Questions_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();

@@ -12,29 +12,32 @@ namespace Online_Exam_App
 {
     public partial class Manage_Exam : Form
     {
-        public Manage_Exam()
+
+        private int instructorID;
+        public Manage_Exam(int id)
         {
             InitializeComponent();
+            instructorID = id;
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
-            Instructor_operations instructor = new Instructor_operations();
+            Instructor_operations instructor = new Instructor_operations(instructorID);
             instructor.Show();
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             this.Close();
-            Create_Exam exam = new Create_Exam();
+            Create_Exam exam = new Create_Exam(instructorID);
             exam.Show();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
             this.Close();
-            Manage_Course_Questions questions = new Manage_Course_Questions();
+            Manage_Course_Questions questions = new Manage_Course_Questions(instructorID);
             questions.Show();
         }
     }

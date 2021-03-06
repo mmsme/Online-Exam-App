@@ -19,9 +19,58 @@ namespace Online_Exam_App
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Instructor_operations instructor = new Instructor_operations();
-            this.Close();
-            instructor.Show();
+            if (!checkInputDataValid())
+            {
+                MessageBox.Show("Please Enter Full Info", "Lack of Info");
+                return;
+            }
+
+            try
+            {
+                int studentId = int.Parse(textBox1.Text);
+
+                string studentName = textBox2.Text;
+
+                login(studentId, studentName);
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Invalid ID", "Error");
+            }
+           
+        }
+
+        private bool checkInputDataValid()
+        {
+            if (textBox1.Text == string.Empty || textBox2.Text == string.Empty)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void login(int id, string name)
+        {
+            OnlineExam ent = new OnlineExam();
+            try
+            {
+                
+                var inst = (from s in ent.Instructors
+                               where s.InsId == id && s.InsName == name
+                               select s).First();
+                this.Close();
+                Instructor_operations instructor = new Instructor_operations(inst.InsId);
+                this.Close();
+                instructor.Show();
+               
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Not Authroized", "Access Denaied");
+            }
         }
     }
 }

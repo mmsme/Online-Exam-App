@@ -46,6 +46,10 @@ namespace Online_Exam_App
             this.label3 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
+            this.flowLayoutPanel4 = new System.Windows.Forms.FlowLayoutPanel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.panel5.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -54,6 +58,8 @@ namespace Online_Exam_App
             this.panel2.SuspendLayout();
             this.flowLayoutPanel3.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.flowLayoutPanel4.SuspendLayout();
+            this.panel6.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel5
@@ -139,6 +145,8 @@ namespace Online_Exam_App
             this.flowLayoutPanel1.Controls.Add(this.panel2);
             this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel3);
             this.flowLayoutPanel1.Controls.Add(this.panel3);
+            this.flowLayoutPanel1.Controls.Add(this.flowLayoutPanel4);
+            this.flowLayoutPanel1.Controls.Add(this.panel6);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
@@ -201,8 +209,8 @@ namespace Online_Exam_App
             this.label2.Location = new System.Drawing.Point(0, 0);
             this.label2.Margin = new System.Windows.Forms.Padding(16, 0, 16, 0);
             this.label2.Name = "label2";
-            this.label2.Padding = new System.Windows.Forms.Padding(5, 3, 0, 0);
-            this.label2.Size = new System.Drawing.Size(44, 32);
+            this.label2.Padding = new System.Windows.Forms.Padding(30, 3, 0, 0);
+            this.label2.Size = new System.Drawing.Size(69, 32);
             this.label2.TabIndex = 0;
             this.label2.Text = "12";
             // 
@@ -244,10 +252,53 @@ namespace Online_Exam_App
             this.label4.Location = new System.Drawing.Point(0, 0);
             this.label4.Margin = new System.Windows.Forms.Padding(0);
             this.label4.Name = "label4";
-            this.label4.Padding = new System.Windows.Forms.Padding(5, 3, 0, 3);
-            this.label4.Size = new System.Drawing.Size(126, 35);
+            this.label4.Padding = new System.Windows.Forms.Padding(30, 3, 0, 3);
+            this.label4.Size = new System.Drawing.Size(151, 35);
             this.label4.TabIndex = 0;
             this.label4.Text = "Mohamed";
+            // 
+            // flowLayoutPanel4
+            // 
+            this.flowLayoutPanel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(249)))), ((int)(((byte)(168)))), ((int)(((byte)(38)))));
+            this.flowLayoutPanel4.Controls.Add(this.label5);
+            this.flowLayoutPanel4.Location = new System.Drawing.Point(3, 419);
+            this.flowLayoutPanel4.Name = "flowLayoutPanel4";
+            this.flowLayoutPanel4.Size = new System.Drawing.Size(317, 51);
+            this.flowLayoutPanel4.TabIndex = 3;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(3, 0);
+            this.label5.Name = "label5";
+            this.label5.Padding = new System.Windows.Forms.Padding(7);
+            this.label5.Size = new System.Drawing.Size(78, 43);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "Dept";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label6);
+            this.panel6.Location = new System.Drawing.Point(3, 476);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(317, 47);
+            this.panel6.TabIndex = 4;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.White;
+            this.label6.Location = new System.Drawing.Point(0, 0);
+            this.label6.Margin = new System.Windows.Forms.Padding(16, 0, 16, 0);
+            this.label6.Name = "label6";
+            this.label6.Padding = new System.Windows.Forms.Padding(30, 3, 0, 0);
+            this.label6.Size = new System.Drawing.Size(69, 32);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "12";
             // 
             // Instructor_operations
             // 
@@ -260,6 +311,7 @@ namespace Online_Exam_App
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Instructor_operations";
             this.Text = "Instructor_operations";
+            this.Load += new System.EventHandler(this.Instructor_operations_Load);
             this.panel5.ResumeLayout(false);
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -272,6 +324,10 @@ namespace Online_Exam_App
             this.flowLayoutPanel3.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.flowLayoutPanel4.ResumeLayout(false);
+            this.flowLayoutPanel4.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -294,5 +350,9 @@ namespace Online_Exam_App
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label6;
     }
 }

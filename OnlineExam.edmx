@@ -378,6 +378,9 @@
         <Function Name="getCoursesByDeptID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="deptID" Type="int" Mode="In" />
         </Function>
+        <Function Name="getInsCourses" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="insID" Type="int" Mode="In" />
+        </Function>
         <Function Name="getStudnetGrades" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="sid" Type="int" Mode="In" />
         </Function>
@@ -1039,6 +1042,9 @@
           <FunctionImport Name="getCoursesByDeptID" ReturnType="Collection(Model.getCoursesByDeptID_Result)">
             <Parameter Name="deptID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getInsCourses" ReturnType="Collection(Model.getInsCourses_Result)">
+            <Parameter Name="insID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="getStudnetGrades" ReturnType="Collection(Model.getStudnetGrades_Result)">
             <Parameter Name="sid" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1222,6 +1228,12 @@
         <ComplexType Name="getCoursesByDeptID_Result">
           <Property Type="Int32" Name="CrsId" Nullable="false" />
           <Property Type="String" Name="CrsName" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="InsName" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="getInsCourses_Result">
+          <Property Type="Int32" Name="CrsId" Nullable="false" />
+          <Property Type="String" Name="CrsName" Nullable="true" MaxLength="30" />
+          <Property Type="Int32" Name="InsId" Nullable="false" />
           <Property Type="String" Name="InsName" Nullable="false" MaxLength="50" />
         </ComplexType>
         <ComplexType Name="getStudnetGrades_Result">
@@ -1445,6 +1457,16 @@
               <ComplexTypeMapping TypeName="Model.getCoursesByDeptID_Result">
                 <ScalarProperty Name="CrsId" ColumnName="CrsId" />
                 <ScalarProperty Name="CrsName" ColumnName="CrsName" />
+                <ScalarProperty Name="InsName" ColumnName="InsName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getInsCourses" FunctionName="Model.Store.getInsCourses">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Model.getInsCourses_Result">
+                <ScalarProperty Name="CrsId" ColumnName="CrsId" />
+                <ScalarProperty Name="CrsName" ColumnName="CrsName" />
+                <ScalarProperty Name="InsId" ColumnName="InsId" />
                 <ScalarProperty Name="InsName" ColumnName="InsName" />
               </ComplexTypeMapping>
             </ResultMapping>

@@ -19,7 +19,7 @@ namespace Online_Exam_App
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Instructor_operations instructor = new Instructor_operations();
+            Instructor_operations instructor = new Instructor_operations(0);
             this.Close();
             instructor.Show();
         }

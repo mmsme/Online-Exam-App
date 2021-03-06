@@ -154,6 +154,15 @@ namespace Online_Exam_App
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getCoursesByDeptID_Result>("getCoursesByDeptID", deptIDParameter);
         }
     
+        public virtual ObjectResult<getInsCourses_Result> getInsCourses(Nullable<int> insID)
+        {
+            var insIDParameter = insID.HasValue ?
+                new ObjectParameter("insID", insID) :
+                new ObjectParameter("insID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getInsCourses_Result>("getInsCourses", insIDParameter);
+        }
+    
         public virtual ObjectResult<getStudnetGrades_Result> getStudnetGrades(Nullable<int> sid)
         {
             var sidParameter = sid.HasValue ?
