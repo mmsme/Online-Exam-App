@@ -32,5 +32,10 @@ namespace Online_Exam_App
             var grades = exam.getStudnetGrades(studentID);
             dataGridView1.DataSource = grades.ToList();
         }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

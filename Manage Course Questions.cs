@@ -218,8 +218,9 @@ namespace Online_Exam_App
                 };
 
                 ent.Ques_Choices.Add(ques_Choices);
-                ent.SaveChanges();
+                
             }
+            ent.SaveChanges();
 
             ansA.Text = ansB.Text = ansC.Text = ansD.Text = string.Empty;
         }
