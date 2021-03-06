@@ -82,29 +82,15 @@ namespace Online_Exam_App
             }
             else
             {
-                // case 2: MCQ
-                // show Ans GroupBox
+
                 List<string> chList = new List<string>(4);
                 ansGroup.Show();
-                // Mapping
                 var choices = ent.Select_MCQ_Question(quest.QuesId).ToList();
-                for (int i = 0; i < chList.Count; i++)
+                TextBox[] textBoxes = { ansA, ansB, ansC, ansD };
+                for (int i = 0; i < choices.Count; i++)
                 {
-                    if (choices[i] == null)
-                    {
-                        chList.Add("null");
-                    }
-                    else
-                    {
-                        chList.Add(choices[i].body);
-                    }
+                    textBoxes[i].Text = choices[i].body;
                 }
-
-                // show Choices
-                ansA.Text = chList[0];
-                ansB.Text = chList[1];
-                ansC.Text = chList[2];
-                ansD.Text = chList[3];
             }
         }
 
