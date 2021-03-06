@@ -190,7 +190,7 @@ namespace Online_Exam_App
 
         private void comboBox3_SelectedIndexChanged(object sender, EventArgs e)
         {
-            string type = comboBox3.SelectedItem.ToString();
+          
             viewAnswerGroup();
         }
 
