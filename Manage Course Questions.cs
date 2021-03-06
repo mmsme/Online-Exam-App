@@ -309,5 +309,44 @@ namespace Online_Exam_App
             ent.SaveChanges();
             ansA.Text = ansB.Text = ansC.Text = ansD.Text = string.Empty;
         }
+
+
+        private void deleteQuestion()
+        {
+            int questId = 0;
+            if (comboBox2.SelectedItem != null)
+            {
+                questId = int.Parse(comboBox2.Text.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("Please select course id", "Waring");
+                return;
+            }
+
+            OnlineExam ent = new OnlineExam();
+            var ques = (from q in ent.Questions
+                        where q.QuesId == questId
+                        select q).First();
+            int courseId = (int)ques.CrsId;
+            try
+            {
+                ent.Delete_Question(questId);
+            }
+            catch (Exception)
+            {
+
+               
+            }
+            
+            
+            loadCourse();
+            loadQuestions(courseId);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            deleteQuestion();
+        }
     }
 }
