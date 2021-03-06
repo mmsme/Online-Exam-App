@@ -270,5 +270,30 @@ namespace Online_Exam_App
             loadCourse();
             loadExams(crsId);
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int examId = 0;
+            if (comboBox1.SelectedItem != null)
+            {
+                examId = int.Parse(comboBox1.SelectedItem.ToString().Split(',')[0]);
+            }
+            else
+            {
+                MessageBox.Show("There Is No Exam Selected");
+                return;
+            }
+
+            OnlineExam ent = new OnlineExam();
+            var exam = (from ex in ent.Exams
+                        where ex.Enumber == examId
+                        select ex).First();
+
+            int crsId = (int)exam.CrsId;
+            ent.Exams.Remove(exam);
+            ent.SaveChanges();
+            loadCourse();
+            loadExams(crsId);
+        }
     }
 }
