@@ -194,10 +194,10 @@ namespace Online_Exam_App
 
             ent.Exams.Add(exam);
             ent.SaveChanges();
+            comboBox1.Text = comboBox2.Text = textBox2.Text = string.Empty;
+            numericUpDown1.Value = numericUpDown2.Value = numericUpDown3.Value = 0;
             loadCourse();
             loadExams(crsId);
-          
-          
         }
 
         // update
@@ -267,10 +267,13 @@ namespace Online_Exam_App
             exam.NumOfTF = nTF;
 
             ent.SaveChanges();
+            comboBox1.Text = comboBox2.Text = textBox2.Text = string.Empty;
+            numericUpDown1.Value = numericUpDown2.Value = numericUpDown3.Value = 0;
             loadCourse();
             loadExams(crsId);
         }
 
+        // Delete
         private void button3_Click(object sender, EventArgs e)
         {
             int examId = 0;
@@ -292,6 +295,8 @@ namespace Online_Exam_App
             int crsId = (int)exam.CrsId;
             ent.Exams.Remove(exam);
             ent.SaveChanges();
+            comboBox1.Text = comboBox2.Text = string.Empty;
+            
             loadCourse();
             loadExams(crsId);
         }

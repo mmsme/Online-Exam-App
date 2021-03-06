@@ -36,13 +36,13 @@ namespace Online_Exam_App
             this.panel3 = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.qmodel = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.qdegree = new System.Windows.Forms.NumericUpDown();
             this.label5 = new System.Windows.Forms.Label();
             this.comboBox3 = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.qcont = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -51,23 +51,23 @@ namespace Online_Exam_App
             this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.ansGroup = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.ansD = new System.Windows.Forms.TextBox();
+            this.ansC = new System.Windows.Forms.TextBox();
+            this.ansB = new System.Windows.Forms.TextBox();
+            this.ansA = new System.Windows.Forms.TextBox();
             label1 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qdegree)).BeginInit();
+            this.ansGroup.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -127,7 +127,7 @@ namespace Online_Exam_App
             this.panel3.Controls.Add(this.button3);
             this.panel3.Controls.Add(this.button2);
             this.panel3.Controls.Add(this.button1);
-            this.panel3.Controls.Add(this.groupBox1);
+            this.panel3.Controls.Add(this.ansGroup);
             this.panel3.Location = new System.Drawing.Point(3, 78);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(589, 751);
@@ -136,13 +136,13 @@ namespace Online_Exam_App
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.label11);
-            this.groupBox2.Controls.Add(this.textBox6);
+            this.groupBox2.Controls.Add(this.qmodel);
             this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.numericUpDown1);
+            this.groupBox2.Controls.Add(this.qdegree);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.comboBox3);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.textBox1);
+            this.groupBox2.Controls.Add(this.qcont);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.comboBox2);
             this.groupBox2.Controls.Add(this.label2);
@@ -167,14 +167,14 @@ namespace Online_Exam_App
             this.label11.TabIndex = 28;
             this.label11.Text = "Model";
             // 
-            // textBox6
+            // qmodel
             // 
-            this.textBox6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox6.Location = new System.Drawing.Point(205, 286);
-            this.textBox6.Multiline = true;
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(303, 30);
-            this.textBox6.TabIndex = 27;
+            this.qmodel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qmodel.Location = new System.Drawing.Point(205, 286);
+            this.qmodel.Multiline = true;
+            this.qmodel.Name = "qmodel";
+            this.qmodel.Size = new System.Drawing.Size(303, 30);
+            this.qmodel.TabIndex = 27;
             // 
             // label6
             // 
@@ -187,13 +187,13 @@ namespace Online_Exam_App
             this.label6.TabIndex = 26;
             this.label6.Text = "Degree";
             // 
-            // numericUpDown1
+            // qdegree
             // 
-            this.numericUpDown1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown1.Location = new System.Drawing.Point(205, 238);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(303, 30);
-            this.numericUpDown1.TabIndex = 25;
+            this.qdegree.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qdegree.Location = new System.Drawing.Point(205, 238);
+            this.qdegree.Name = "qdegree";
+            this.qdegree.Size = new System.Drawing.Size(303, 30);
+            this.qdegree.TabIndex = 25;
             // 
             // label5
             // 
@@ -226,14 +226,14 @@ namespace Online_Exam_App
             this.label4.TabIndex = 22;
             this.label4.Text = "Question ";
             // 
-            // textBox1
+            // qcont
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(205, 189);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(303, 30);
-            this.textBox1.TabIndex = 21;
+            this.qcont.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.qcont.Location = new System.Drawing.Point(205, 189);
+            this.qcont.Multiline = true;
+            this.qcont.Name = "qcont";
+            this.qcont.Size = new System.Drawing.Size(303, 30);
+            this.qcont.TabIndex = 21;
             // 
             // label3
             // 
@@ -254,6 +254,7 @@ namespace Online_Exam_App
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(303, 30);
             this.comboBox2.TabIndex = 19;
+            this.comboBox2.SelectedIndexChanged += new System.EventHandler(this.comboBox2_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -274,6 +275,7 @@ namespace Online_Exam_App
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(303, 30);
             this.comboBox1.TabIndex = 17;
+            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
             // 
             // button4
             // 
@@ -340,24 +342,24 @@ namespace Online_Exam_App
             this.button1.Text = "Add";
             this.button1.UseVisualStyleBackColor = false;
             // 
-            // groupBox1
+            // ansGroup
             // 
-            this.groupBox1.Controls.Add(this.label10);
-            this.groupBox1.Controls.Add(this.label9);
-            this.groupBox1.Controls.Add(this.label8);
-            this.groupBox1.Controls.Add(this.label7);
-            this.groupBox1.Controls.Add(this.textBox5);
-            this.groupBox1.Controls.Add(this.textBox4);
-            this.groupBox1.Controls.Add(this.textBox3);
-            this.groupBox1.Controls.Add(this.textBox2);
-            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(17, 338);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(560, 237);
-            this.groupBox1.TabIndex = 10;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Answer";
+            this.ansGroup.Controls.Add(this.label10);
+            this.ansGroup.Controls.Add(this.label9);
+            this.ansGroup.Controls.Add(this.label8);
+            this.ansGroup.Controls.Add(this.label7);
+            this.ansGroup.Controls.Add(this.ansD);
+            this.ansGroup.Controls.Add(this.ansC);
+            this.ansGroup.Controls.Add(this.ansB);
+            this.ansGroup.Controls.Add(this.ansA);
+            this.ansGroup.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ansGroup.ForeColor = System.Drawing.Color.White;
+            this.ansGroup.Location = new System.Drawing.Point(17, 338);
+            this.ansGroup.Name = "ansGroup";
+            this.ansGroup.Size = new System.Drawing.Size(560, 237);
+            this.ansGroup.TabIndex = 10;
+            this.ansGroup.TabStop = false;
+            this.ansGroup.Text = "Answer";
             // 
             // label10
             // 
@@ -403,33 +405,33 @@ namespace Online_Exam_App
             this.label7.TabIndex = 11;
             this.label7.Text = "Answer A";
             // 
-            // textBox5
+            // ansD
             // 
-            this.textBox5.Location = new System.Drawing.Point(195, 179);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(303, 30);
-            this.textBox5.TabIndex = 3;
+            this.ansD.Location = new System.Drawing.Point(195, 179);
+            this.ansD.Name = "ansD";
+            this.ansD.Size = new System.Drawing.Size(303, 30);
+            this.ansD.TabIndex = 3;
             // 
-            // textBox4
+            // ansC
             // 
-            this.textBox4.Location = new System.Drawing.Point(195, 128);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(303, 30);
-            this.textBox4.TabIndex = 2;
+            this.ansC.Location = new System.Drawing.Point(195, 128);
+            this.ansC.Name = "ansC";
+            this.ansC.Size = new System.Drawing.Size(303, 30);
+            this.ansC.TabIndex = 2;
             // 
-            // textBox3
+            // ansB
             // 
-            this.textBox3.Location = new System.Drawing.Point(195, 78);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(303, 30);
-            this.textBox3.TabIndex = 1;
+            this.ansB.Location = new System.Drawing.Point(195, 78);
+            this.ansB.Name = "ansB";
+            this.ansB.Size = new System.Drawing.Size(303, 30);
+            this.ansB.TabIndex = 1;
             // 
-            // textBox2
+            // ansA
             // 
-            this.textBox2.Location = new System.Drawing.Point(195, 29);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(303, 30);
-            this.textBox2.TabIndex = 0;
+            this.ansA.Location = new System.Drawing.Point(195, 29);
+            this.ansA.Name = "ansA";
+            this.ansA.Size = new System.Drawing.Size(303, 30);
+            this.ansA.TabIndex = 0;
             // 
             // Manage_Course_Questions
             // 
@@ -449,9 +451,9 @@ namespace Online_Exam_App
             this.panel3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.qdegree)).EndInit();
+            this.ansGroup.ResumeLayout(false);
+            this.ansGroup.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -462,28 +464,28 @@ namespace Online_Exam_App
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox ansGroup;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox ansD;
+        private System.Windows.Forms.TextBox ansC;
+        private System.Windows.Forms.TextBox ansB;
+        private System.Windows.Forms.TextBox ansA;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox qmodel;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown qdegree;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ComboBox comboBox3;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox qcont;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBox2;
         private System.Windows.Forms.Label label2;
