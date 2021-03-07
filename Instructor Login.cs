@@ -72,5 +72,10 @@ namespace Online_Exam_App
                 MessageBox.Show("Not Authroized", "Access Denaied");
             }
         }
+
+        private void Instructor_Login_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

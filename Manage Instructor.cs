@@ -13,9 +13,12 @@ namespace Online_Exam_App
     public partial class Manage_Instructor : Form
     {
         OnlineExam ent = new OnlineExam();
-        public Manage_Instructor()
+        private int managerID;
+
+        public Manage_Instructor(int id)
         {
             InitializeComponent();
+            managerID = id;
             var instructors = ent.Instructors.Select(d =>new { d.InsId,d.InsName,d.DeptId}).ToList() ;
             dataGridView1.DataSource = instructors;
             var deps = ent.Departments.Select(d => d);
@@ -32,7 +35,7 @@ namespace Online_Exam_App
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Manager_Home_Form home_Form = new Manager_Home_Form();
+            Manager_Home_Form home_Form = new Manager_Home_Form(managerID);
             this.Close();
             home_Form.Show();
         }

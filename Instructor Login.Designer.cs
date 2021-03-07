@@ -133,7 +133,8 @@ namespace Online_Exam_App
             this.Controls.Add(this.panel1);
             this.Name = "Instructor_Login";
             this.Text = "Instructor_Login";
-             this.panel1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Instructor_Login_Load);
+            this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
