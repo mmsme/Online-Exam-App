@@ -123,6 +123,19 @@ namespace Online_Exam_App
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("Delete_Student", idParameter);
         }
     
+        public virtual ObjectResult<string> deletePrevGrade(Nullable<int> sid, Nullable<int> eid)
+        {
+            var sidParameter = sid.HasValue ?
+                new ObjectParameter("Sid", sid) :
+                new ObjectParameter("Sid", typeof(int));
+    
+            var eidParameter = eid.HasValue ?
+                new ObjectParameter("Eid", eid) :
+                new ObjectParameter("Eid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("deletePrevGrade", sidParameter, eidParameter);
+        }
+    
         public virtual ObjectResult<string> deleteStudentExam(Nullable<int> sid, Nullable<int> exid)
         {
             var sidParameter = sid.HasValue ?

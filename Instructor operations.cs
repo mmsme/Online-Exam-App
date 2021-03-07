@@ -28,7 +28,7 @@ namespace Online_Exam_App
 
         private void button2_Click(object sender, EventArgs e)
         {
-            Manage_Topics topics = new Manage_Topics();
+            Manage_Topics topics = new Manage_Topics(instructorID);
             this.Close();
             topics.Show();
         }

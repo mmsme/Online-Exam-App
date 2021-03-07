@@ -44,6 +44,7 @@ namespace Online_Exam_App
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+
             if (dataGridView1.CurrentCell.ColumnIndex > 0)
             {
                 this.dataGridView1.CurrentCell.Selected = false;

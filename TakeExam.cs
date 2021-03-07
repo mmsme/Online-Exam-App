@@ -199,9 +199,14 @@ namespace Online_Exam_App
             }
 
             var res = exam.Calc_Student_Exam_Grade(studentID,examID).First();
+
+            deletePrevGradeIfExist();
+
             exam.saveStudentGrade(studentID,examID,res.grade);
+
             MessageBox.Show($"Your Grade {res.grade}, and Degree {res.student_answer_degrees}","Your Resault");
             StudentDashbord dashbord = new StudentDashbord(studentID);
+
             this.Close();
             dashbord.Show();
         }
@@ -212,13 +217,19 @@ namespace Online_Exam_App
             {
                 OnlineExam exam = new OnlineExam();
                 var msg = exam.deleteStudentExam(studentID, examID);
-                exam.SaveChanges();
             }
             catch (Exception)
             {
 
                 return;
             }
+        }
+
+        private void deletePrevGradeIfExist()
+        {
+            OnlineExam exam = new OnlineExam();
+            var msg = exam.deletePrevGrade(studentID, examID);
+            exam.SaveChanges();
         }
     }
 }

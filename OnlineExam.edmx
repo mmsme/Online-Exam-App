@@ -187,7 +187,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ques_Choices_Question">
-          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Ques_Choices" Type="Self.Ques_Choices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
@@ -363,6 +365,10 @@
         </Function>
         <Function Name="Delete_Student" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="deletePrevGrade" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Sid" Type="int" Mode="In" />
+          <Parameter Name="Eid" Type="int" Mode="In" />
         </Function>
         <Function Name="deleteStudentExam" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Sid" Type="int" Mode="In" />
@@ -873,7 +879,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Ques_Choices_Question">
-          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="Ques_Choices" Type="Self.Ques_Choices" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Question">
@@ -1026,6 +1034,10 @@
           </FunctionImport>
           <FunctionImport Name="Delete_Student" ReturnType="Collection(String)">
             <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="deletePrevGrade" ReturnType="Collection(String)">
+            <Parameter Name="Sid" Mode="In" Type="Int32" />
+            <Parameter Name="Eid" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="deleteStudentExam" ReturnType="Collection(String)">
             <Parameter Name="Sid" Mode="In" Type="Int32" />
@@ -1436,6 +1448,7 @@
           <FunctionImportMapping FunctionImportName="Delete_Instructor" FunctionName="Model.Store.Delete_Instructor" />
           <FunctionImportMapping FunctionImportName="Delete_Question" FunctionName="Model.Store.Delete_Question" />
           <FunctionImportMapping FunctionImportName="Delete_Student" FunctionName="Model.Store.Delete_Student" />
+          <FunctionImportMapping FunctionImportName="deletePrevGrade" FunctionName="Model.Store.deletePrevGrade" />
           <FunctionImportMapping FunctionImportName="deleteStudentExam" FunctionName="Model.Store.deleteStudentExam" />
           <FunctionImportMapping FunctionImportName="generateExam" FunctionName="Model.Store.generateExam">
             <ResultMapping>

@@ -23,5 +23,10 @@ namespace Online_Exam_App
             this.Close();
             manager_Home.Show();
         }
+
+        private void ManagerLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -18,15 +18,11 @@ namespace Online_Exam_App
         {
             InitializeComponent();
             this.instructorID = insID;
-            var students = ent.Students.Select(d=>d).ToList();
-            dataGridView1.DataSource = students;
-            
-            
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Instructor_operations instructor = new Instructor_operations(0);
+            Instructor_operations instructor = new Instructor_operations(instructorID);
             this.Close();
             instructor.Show();
         }
@@ -74,8 +70,7 @@ namespace Online_Exam_App
                 ent.Students.Add(std);
                 MessageBox.Show("ADDED");
                 ent.SaveChanges();
-                var students = ent.Students.Select(d => d).ToList();
-                dataGridView1.DataSource = students;
+                loadStudentData();
             }
             else
                 MessageBox.Show("PLEASE ENTER FULL DATA");
@@ -97,8 +92,7 @@ namespace Online_Exam_App
                     mystd.DoB = Convert.ToDateTime(textBox4.Text);
                     ent.SaveChanges();
                     MessageBox.Show("UPDATED");
-                    var students = ent.Students.Select(d => d).ToList();
-                    dataGridView1.DataSource = students;
+                    loadStudentData();
                 }
                  else
                 {
@@ -141,6 +135,21 @@ namespace Online_Exam_App
             
 
 
+        }
+
+        private void Manage_Students_Load(object sender, EventArgs e)
+        {
+            loadStudentData();
+        }
+
+        private void loadStudentData()
+        {
+            var ins = ent.Select_Instructor(instructorID).First();
+          
+            var students = from s in ent.Students
+                           where s.DeptId == ins.Department_ID
+                           select s;
+            dataGridView1.DataSource = students.ToList();
         }
     }
 }

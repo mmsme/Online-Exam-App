@@ -111,6 +111,7 @@ namespace Online_Exam_App
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ManagerLogin";
             this.Text = "ManagerLogin";
+            this.Load += new System.EventHandler(this.ManagerLogin_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

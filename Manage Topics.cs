@@ -13,14 +13,16 @@ namespace Online_Exam_App
     public partial class Manage_Topics : Form
     {
         OnlineExam ent = new OnlineExam();
-        public Manage_Topics()
+        private int instructorID;
+        public Manage_Topics(int insID)
         {
             InitializeComponent();
+            instructorID = insID;
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            Instructor_operations instructor = new Instructor_operations(0);
+            Instructor_operations instructor = new Instructor_operations(instructorID);
             this.Close();
             instructor.Show();
         }
@@ -119,6 +121,11 @@ namespace Online_Exam_App
                 MessageBox.Show("PLEASE SELECT TOPIC");
                 //ziad
             }
+        }
+
+        private void loadCourseTopics()
+        {
+
         }
     }
 }
