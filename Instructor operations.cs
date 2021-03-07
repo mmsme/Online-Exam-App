@@ -21,7 +21,7 @@ namespace Online_Exam_App
 
         private void button3_Click(object sender, EventArgs e)
         {
-            Manage_Students students = new Manage_Students();
+            Manage_Students students = new Manage_Students(instructorID);
             this.Close();
             students.Show();
         }
