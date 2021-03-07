@@ -97,6 +97,10 @@ namespace Online_Exam_App
                 var courses = ent.Courses.Select(d => new { d.CrsId, d.CrsName }).ToList();
                 dataGridView1.DataSource = courses;
             }
+            else
+            {
+                MessageBox.Show("PLEASE ENTER VALID DATA");
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -112,6 +116,10 @@ namespace Online_Exam_App
                 var courses = ent.Courses.Select(d => new { d.CrsId, d.CrsName }).ToList();
                 dataGridView1.DataSource = courses;
 
+            }
+            else
+            {
+                MessageBox.Show("PLEASE ENTER VALID DATA");
             }
         }
     }
